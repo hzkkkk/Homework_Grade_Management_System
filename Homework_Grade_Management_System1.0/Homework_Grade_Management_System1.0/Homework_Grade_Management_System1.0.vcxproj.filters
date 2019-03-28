@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\User">
+      <UniqueIdentifier>{8ef8a4e9-3464-45df-b32f-ca88527a488e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Menu">
+      <UniqueIdentifier>{151acbf9-e2d2-4a16-a199-16a7a2a4c7ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Menu">
+      <UniqueIdentifier>{55bf0189-34c5-4532-b322-c059268d860c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User">
+      <UniqueIdentifier>{b71d8345-7284-49cc-9d4f-22bb5b285ae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\iostream">
+      <UniqueIdentifier>{6a5442d0-9610-41aa-bb82-ef14b78d697e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\iostream">
+      <UniqueIdentifier>{e2522fb5-25b6-4841-81ba-0f9a1692f186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{ea7e39f2-dbd5-4368-8a51-e169a9359b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\User\Student">
+      <UniqueIdentifier>{0039fca6-0dce-4991-a71a-c8b40408cf1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User\Student">
+      <UniqueIdentifier>{5beeb2d0-c778-447b-a423-6d67a33053b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User\Homework">
+      <UniqueIdentifier>{c23d1f30-77c5-4514-88c6-cfe90a560510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\User\Homework">
+      <UniqueIdentifier>{9beda390-3927-44b3-aa08-f24db57b0ce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{028a1c7e-e77c-4587-a94b-217bcbb03579}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="menu.cpp">
+      <Filter>源文件\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>源文件\iostream</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>源文件\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Stud.cpp">
+      <Filter>源文件\User\Student</Filter>
+    </ClCompile>
+    <ClCompile Include="Stud_Plus.cpp">
+      <Filter>源文件\User\Student</Filter>
+    </ClCompile>
+    <ClCompile Include="Homw.cpp">
+      <Filter>源文件\User\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="Homw_Plus.cpp">
+      <Filter>源文件\User\Homework</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="menu.h">
+      <Filter>头文件\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>头文件\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>头文件\iostream</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Stud.h">
+      <Filter>头文件\User\Student</Filter>
+    </ClInclude>
+    <ClInclude Include="Stud_Plus.h">
+      <Filter>头文件\User\Student</Filter>
+    </ClInclude>
+    <ClInclude Include="Homw.h">
+      <Filter>头文件\User\Homework</Filter>
+    </ClInclude>
+    <ClInclude Include="Homw_Plus.h">
+      <Filter>头文件\User\Homework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

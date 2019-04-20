@@ -2,14 +2,16 @@
 
 #include <windows.h> //Sleep()
 #include <cstdio>
-
 #include <string>
 #include <Regex>
 #include <iostream>
-#include <string>
 #include <stdbool.h> //bool是C++的关键字 C不支持
-#pragma warning (disable:4996)  
+#pragma warning (disable:4996)
+
+#include "DataBase.h"
+#include "Stud.h"
 using namespace std;
+
 ////////////////////////////////////////
 ///login.h
 
@@ -17,9 +19,8 @@ enum Authority{
 	STU, TE, ADMIN, VISITOR
 };
 
-
 #define LOG_NUMBER_LIMIT_MIN 1
-#define LOG_NUMBER_LIMIT_MAX 3
+#define LOG_NUMBER_LIMIT_MAX 4
 
 
 ////////////////////////////////////////
@@ -43,9 +44,7 @@ enum Authority{
 #define NODE_DATA data 	
 #define NODE_NEXT next	
 #define SQLIST_DATA sqlist_data
-#define SQLIST_STU sqlist_stu
-
-
+#define SQLIST_STU sqlist_st
 
 #define HOMEW_HNUMBER hnumber
 #define HOMEW_SNAME hname
@@ -78,7 +77,6 @@ typedef struct
 {
 	int STU_SNUMBER;
 	char STU_SNAME[20];
-	
 }Stu;
 typedef struct node_stu* pointer;
 typedef pointer SQLIST_STU;

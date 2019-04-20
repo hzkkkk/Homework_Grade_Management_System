@@ -1,13 +1,9 @@
 #include "Config.h"
 #include "input.h"
 #include "menu.h"
-#include "Stud_Plus.h"
-#include "Homw_Plus.h"
 
 int show_menu(int log_number) {
 	SHOW_MENU();
-	Stud_Plus stu[5];
-	Homw_Plus hom;
 	//œ‘ æ≤Àµ•
 	switch (log_number)
 	{

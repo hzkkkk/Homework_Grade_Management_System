@@ -3,27 +3,34 @@
 class Stud 
 {
 public:
-	int sname;
-
 	Stud();
 	~Stud();
-
-	SQLIST_STU InitSqList();
-
-	void DestorySqLIst(SQLIST_STU head);
-
-	unsigned int SqListCount(const SQLIST_STU head);
-
-	pointer Get(SQLIST_STU head, int i);
-
-	int Add(SQLIST_STU head, Stu e, int i);
-
-	int Delete(SQLIST_STU head, int i);
-
-	int Destory(SQLIST_STU head);
+	int sname;
+	uint16_t _snumber;
+	unsigned char _sname[20];
 
 
-	virtual int Traverse(const SQLIST_STU head);
+	uint16_t printSnumber();
+	void setSnumber(uint16_t snumber);
+	
+	unsigned char* getSname();
+	void setSname(unsigned char* sname);
 
+
+
+	//SQLIST_STU InitSqList();
+	//void DestorySqLIst(SQLIST_STU head);
+	//unsigned int SqListCount(const SQLIST_STU head);
+	//pointer Get(SQLIST_STU head, int i);
+	//int Add(SQLIST_STU head, Stu e, int i);
+	//int Delete(SQLIST_STU head, int i);
+	//int Destory(SQLIST_STU head);
+	//int Traverse(const SQLIST_STU head);
+	//int Delete_Lowest_Highest(sqlist_stu head, int lowest, int highest);
+	//pointer Search(const sqlist_stu head, int temp, char * temp_3);
+
+
+
+	
 };
 

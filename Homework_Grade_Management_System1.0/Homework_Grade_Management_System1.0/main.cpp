@@ -1,25 +1,16 @@
 /*
 	author:							hzk
-	Vertion:						1.0
+	Vertion:						1.1
 	Attention£º						Just for Study.
-	Log:							Create
-	Date:							2019/3/21
+	Log:							Update
+	Date		:							2019/4/15
 */
 
 #include "Config.h"
 #include "Login.h"
 #include "menu.h"
 #include "input.h"
-#include "Stud_Plus.h"
-#include "Homw_Plus.h"
 
-//int count_list;
-//int max;
-//char temp_3[20];
-//char temp_3_2[20];
-//int count_3;
-//int count_4;
-//int count_5;
 
 int main()
 {
@@ -56,9 +47,8 @@ int main()
 			//[2]µÇÂ¼ºó½çÃæ
 			if (!show_menu(log_mode)) break;
 		}
-		system("pause");
 	}
-	
+	system("pause");
 	return 0;
 }
 

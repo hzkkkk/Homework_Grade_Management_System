@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Config.h"
 
 int input_num_unit();
 int input_num_unit(int number_limitmin, int number_limitmax);

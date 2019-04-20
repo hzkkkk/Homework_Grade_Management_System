@@ -49,6 +49,9 @@
     <Filter Include="main">
       <UniqueIdentifier>{028a1c7e-e77c-4587-a94b-217bcbb03579}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\DB">
+      <UniqueIdentifier>{011ed7bf-b13d-4802-8399-8e54e24e311d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="menu.cpp">
@@ -62,15 +65,6 @@
     </ClCompile>
     <ClCompile Include="Stud.cpp">
       <Filter>源文件\User\Student</Filter>
-    </ClCompile>
-    <ClCompile Include="Stud_Plus.cpp">
-      <Filter>源文件\User\Student</Filter>
-    </ClCompile>
-    <ClCompile Include="Homw.cpp">
-      <Filter>源文件\User\Homework</Filter>
-    </ClCompile>
-    <ClCompile Include="Homw_Plus.cpp">
-      <Filter>源文件\User\Homework</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
@@ -92,14 +86,11 @@
     <ClInclude Include="Stud.h">
       <Filter>头文件\User\Student</Filter>
     </ClInclude>
-    <ClInclude Include="Stud_Plus.h">
-      <Filter>头文件\User\Student</Filter>
+    <ClInclude Include="DataBase.h">
+      <Filter>头文件\DB</Filter>
     </ClInclude>
-    <ClInclude Include="Homw.h">
-      <Filter>头文件\User\Homework</Filter>
-    </ClInclude>
-    <ClInclude Include="Homw_Plus.h">
-      <Filter>头文件\User\Homework</Filter>
+    <ClInclude Include="Exception_Iterator.h">
+      <Filter>头文件\DB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

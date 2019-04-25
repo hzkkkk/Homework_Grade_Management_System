@@ -22,9 +22,6 @@
     <Filter Include="头文件\Menu">
       <UniqueIdentifier>{55bf0189-34c5-4532-b322-c059268d860c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\User">
-      <UniqueIdentifier>{b71d8345-7284-49cc-9d4f-22bb5b285ae4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\iostream">
       <UniqueIdentifier>{6a5442d0-9610-41aa-bb82-ef14b78d697e}</UniqueIdentifier>
     </Filter>
@@ -37,12 +34,6 @@
     <Filter Include="源文件\User\Student">
       <UniqueIdentifier>{0039fca6-0dce-4991-a71a-c8b40408cf1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\User\Student">
-      <UniqueIdentifier>{5beeb2d0-c778-447b-a423-6d67a33053b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\User\Homework">
-      <UniqueIdentifier>{c23d1f30-77c5-4514-88c6-cfe90a560510}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\User\Homework">
       <UniqueIdentifier>{9beda390-3927-44b3-aa08-f24db57b0ce8}</UniqueIdentifier>
     </Filter>
@@ -51,6 +42,18 @@
     </Filter>
     <Filter Include="头文件\DB">
       <UniqueIdentifier>{011ed7bf-b13d-4802-8399-8e54e24e311d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DB">
+      <UniqueIdentifier>{af197e4f-6cea-4bae-b845-557bc71d2277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User">
+      <UniqueIdentifier>{b71d8345-7284-49cc-9d4f-22bb5b285ae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User\Student">
+      <UniqueIdentifier>{5beeb2d0-c778-447b-a423-6d67a33053b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\User\Homework">
+      <UniqueIdentifier>{c23d1f30-77c5-4514-88c6-cfe90a560510}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>源文件\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="StudManager.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Exception_Iterator.h">
       <Filter>头文件\DB</Filter>
+    </ClInclude>
+    <ClInclude Include="StudManager.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,14 +3,19 @@
 	Vertion:						1.1
 	Attention£º						Just for Study.
 	Log:							Update
-	Date		:							2019/4/15
+	Date	:							2019/4/15
 */
 
 #include "Config.h"
+#ifdef DEBUG_NONE_ONE_0
 #include "Login.h"
 #include "menu.h"
 #include "input.h"
+#endif
+#include "DataBase.h"
+#include "Stud.h"
 
+TPList<Stud> Stus;
 
 int main()
 {
@@ -28,8 +33,7 @@ int main()
 #endif // DEBUGMODE_0
 
 		//[1]µÇÂ¼³É¹¦
-		switch (autho)
-		{
+		switch (autho){
 		case STU:  log_mode = 1; break;
 		case TE:  log_mode = 2; break;
 		case ADMIN: log_mode = 3; break;
@@ -37,8 +41,7 @@ int main()
 		}
 
 		for (;;) {
-			switch (autho)
-			{
+			switch (autho){
 			case STU:  log_mode = 1; break;
 			case TE:  log_mode = 2; break;
 			case ADMIN: log_mode = 3; break;

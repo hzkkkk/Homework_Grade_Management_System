@@ -1,3 +1,8 @@
-﻿  Stud.cpp
+﻿cl : 命令行 warning D9007: “/Gm”需要“/Zi 或 /ZI”；选项被忽略
+  StudManager.cpp
+StudManager.cpp(35): warning C4305: “=”: 从“int”到“uint16_t”截断
+StudManager.cpp(35): warning C4309: “=”: 截断常量值
+  main.cpp
+  正在生成代码...
   Homework_Grade_Management_System1.0.vcxproj -> G:\17\大二上C++大作业\Homework_Grade_Management_System\Homework_Grade_Management_System1.0\Debug\Homework_Grade_Management_System1.0.exe
   Homework_Grade_Management_System1.0.vcxproj -> G:\17\大二上C++大作业\Homework_Grade_Management_System\Homework_Grade_Management_System1.0\Debug\Homework_Grade_Management_System1.0.pdb (Full PDB)

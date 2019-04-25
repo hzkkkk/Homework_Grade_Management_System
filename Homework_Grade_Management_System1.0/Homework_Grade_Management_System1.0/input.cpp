@@ -1,3 +1,5 @@
+#include "Config.h"
+#ifdef DEBUG_NONE_ONE_0
 #include "input.h"
 
 
@@ -143,3 +145,5 @@ bool input_Rex(std::string regex) {
 #endif
 
 }
+
+#endif

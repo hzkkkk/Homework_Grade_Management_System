@@ -1,77 +1,74 @@
+ï»¿#pragma once
 #pragma once
 #include "Config.h"
 #include "Exception_Iterator.h"
+using namespace std;
 
 template <typename T>
-/* ½á¹¹ÌåÁ´±í */
 class TPList {
 protected:
-	struct Node {	
+	struct Node {
 		T val;
 		Node *next;
 		Node *prev;
-		//TÃ»±ØÒªÖ¸Àà
 		Node(T va = { 0 }, Node *pre = nullptr, Node *ne = nullptr) : val(va), prev(pre), next(ne) {}
 	};
 
 public:
-	/*------ÄÚ²¿µü´úÆ÷Àà-----*/
+	/*------å†…éƒ¨è¿­ä»£å™¨ç±»-----*/
+	/*------æ„é€ å‡½æ•°-----*/
 	class const_iterator {
 	public:
-		/*------¹¹Ôìº¯Êı-----*/
 		const_iterator() : cur(nullptr) {}
-		//Node *pÒ²ĞĞ, µ«²»ÒªĞ´³Éconst Node *p; ·ñÔò»á³öÏÖµ×²ãconst²»ÏàÈİÎÊÌâ
-		///ĞŞ¸ÄÇ°
-		//nodeÊÇTPListµÄ·â×°³ÉÔ±,²»ÄÜpublic
-		//const_iterator(Node * const p) : cur(p) {}  
+		//Node *pä¹Ÿè¡Œ, ä½†ä¸è¦å†™æˆconst Node *p; å¦åˆ™ä¼šå‡ºç°åº•å±‚constä¸ç›¸å®¹é—®é¢˜
 	private:
+		/*nodeæ˜¯TPListçš„å°è£…æˆå‘˜,ä¸èƒ½public*/
+		//æ„é€ å‡½æ•°
 		const_iterator(Node * const p) : cur(p) {}
 
 	protected:
-		//×¢Òâ£¡²»È»Ç¶Ì×Àà²»ÄÜ·ÃÎÊÍâ²¿Àà
-		friend class TPList<T>; //ÓÑÔªTPList,ÓÃÓÚµü´úÆ÷·ÃÎÊ
+		//æ³¨æ„ï¼ä¸ç„¶åµŒå¥—ç±»ä¸èƒ½è®¿é—®å¤–éƒ¨ç±»
+		friend class TPList<T>; //å‹å…ƒTPList,ç”¨äºè¿­ä»£å™¨è®¿é—®
 		Node *cur;
-		const TPList<T> *theList;		//¼ÇÂ¼Ö¸ÏòµÄÁ´±íµÄÖ¸Õë£¬ÓÃ×÷±êÊ¶¡£
+		const TPList<T> *theList;		//è®°å½•æŒ‡å‘çš„é“¾è¡¨çš„æŒ‡é’ˆï¼Œç”¨ä½œæ ‡è¯†ã€‚
 		const_iterator(const TPList<T>* list, Node * const p) : cur(p), theList(list) {}
 
-		/*------¹¹Ôìº¯Êı-----*/
-
-
+		/*------æ„é€ å‡½æ•°-----*/
+	public:
+		/*------è¿ç®—ç¬¦é‡è½½-----*/
 		const T &operator*() const
 		{
 			return cur->val;
 		}
-		//×¢ÒâÇ°ÖÃ++·µ»ØÒıÓÃ
+
+		//æ³¨æ„å‰ç½®++è¿”å›å¼•ç”¨
 		const_iterator &operator++()
 		{
 			cur = cur->next;
 			return *this;
 		}
 
-		//×¢ÒâÇ°ÖÃ--·µ»ØÒıÓÃ
+		//æ³¨æ„å‰ç½®--è¿”å›å¼•ç”¨
 		const_iterator &operator--()
 		{
 			cur = cur->prev;
 			return *this;
 		}
 
-		/*------ÔËËã·ûÖØÔØ-----*/
-
-		//ºóÖÃ++²»¿É·µ»ØÒıÓÃ
+		//åç½®++ä¸å¯è¿”å›å¼•ç”¨
 		const_iterator operator++(int)
 		{
 			const_iterator old(theList, this->cur);
-			//µ÷ÓÃÇ°ÖÃ++
+			//è°ƒç”¨å‰ç½®++
 			++(*this);
 			return old;
 		}
 
-
-		//ºóÖÃ--²»¿É·µ»ØÒıÓÃ
+		//åç½®--ä¸å¯è¿”å›å¼•ç”¨
 		const_iterator operator--(int)
 		{
 			const_iterator old(theList, this->cur);
-			//µ÷ÓÃÇ°ÖÃ++
+			//è°ƒç”¨å‰ç½®++
 			--(*this);
 			return old;
 		}
@@ -80,15 +77,15 @@ public:
 		{
 			return cur == iter.cur;
 		}
+
 		bool operator!=(const const_iterator &iter) const
 		{
-			//µ÷ÓÃoperator==
+			//è°ƒç”¨operator==
 			return !(*this == iter);
 		}
 
-		/*------ÔËËã·ûÖØÔØ-----*/
-
-		//ÓĞĞ§ĞÔ¼ìÑé
+		/*------è¿ç®—ç¬¦é‡è½½-----*/
+		//æœ‰æ•ˆæ€§æ£€éªŒ
 		void AssertValidity() const
 		{
 			if (theList == nullptr || cur == nullptr ||
@@ -106,33 +103,35 @@ public:
 		}
 	};
 public:
-	//ÄÚ²¿Àà
+	//å†…éƒ¨ç±»
 	class iterator : public const_iterator {
 		friend class TPList<T>;
-
 		iterator() : cur(nullptr) {};
 	private:
 		iterator(Node * p) : cur(p) {}
 
 	protected:
 		Node *cur;
-		//×¢Òâ£¡²»È»Ç¶Ì×Àà²»ÄÜ·ÃÎÊÍâ²¿Àà
-		friend class TPList<T>; //ÓÑÔªTPList,ÓÃÓÚµü´úÆ÷·ÃÎÊ
-		const TPList<T> *theList;		//¼ÇÂ¼Ö¸ÏòµÄÁ´±íµÄÖ¸Õë£¬ÓÃ×÷±êÊ¶¡£
+		//æ³¨æ„ï¼ä¸ç„¶åµŒå¥—ç±»ä¸èƒ½è®¿é—®å¤–éƒ¨ç±»
+		friend class TPList<T>; //å‹å…ƒTPList,ç”¨äºè¿­ä»£å™¨è®¿é—®
+		const TPList<T> *theList;		//è®°å½•æŒ‡å‘çš„é“¾è¡¨çš„æŒ‡é’ˆï¼Œç”¨ä½œæ ‡è¯†ã€‚
 		iterator(const TPList<T>* list, Node * p) : cur(p), theList(list) {}
 
-		/*------ÔËËã·ûÖØÔØ-----*/
+	public:
+
+		/*------è¿ç®—ç¬¦é‡è½½-----*/
 		T &operator*()
 		{
 			return cur->val;
 		}
-		//×¢Òâ
+
 		const T &operator*() const
 		{
 			return const_iterator::operator*();
 		}
-		//ÖØĞ´++
-		//Ç°ÖÃ++·µ»ØÒıÓÃ
+
+		//é‡å†™++
+		//å‰ç½®++è¿”å›å¼•ç”¨
 		iterator &operator++()
 		{
 			this->cur = this->cur->next;
@@ -140,8 +139,8 @@ public:
 			return *this;
 		}
 
-		//ÖØĞ´--
-		//Ç°ÖÃ--·µ»ØÒıÓÃ
+		//é‡å†™--
+		//å‰ç½®--è¿”å›å¼•ç”¨
 		iterator &operator--()
 		{
 			this->cur = this->cur->prev;
@@ -149,7 +148,7 @@ public:
 			return *this;
 		}
 
-		//ÓĞĞ§ĞÔ¼ìÑé
+		//æœ‰æ•ˆæ€§æ£€éªŒ
 		void AssertValidity() const
 		{
 			if (theList == nullptr || cur == nullptr ||
@@ -165,18 +164,19 @@ public:
 				throw IteratorMisMatchException("Iterator went out of the range!");
 			}
 		}
+
 	};
 
-	/*-------------TPList¹¹ÔìÆ÷ºÍÖØÔØÔËËã·û-------------*/
+	/*-------------TPListæ„é€ å™¨å’Œé‡è½½è¿ç®—ç¬¦-------------*/
 public:
 	TPList() { Init(); }
-	//×¢Òâ±¾º¯ÊıµÄÊµÏÖ¼¼ÇÉ
+	//æ³¨æ„æœ¬å‡½æ•°çš„å®ç°æŠ€å·§
 	TPList(const TPList &list) {
 		Init();
 		operator=(list);
 	}
-	//×¢Òâ·µ»ØÖµ
-	/*------ÔËËã·ûÖØÔØ-----*/
+	//æ³¨æ„è¿”å›å€¼
+	/*------è¿ç®—ç¬¦é‡è½½-----*/
 
 	const TPList &operator=(const TPList &list) {
 		if (this == &list)
@@ -208,28 +208,29 @@ private:
 	size_t size;
 
 public:
-	/*-------------Á´±í¶ÔÍâ½Ó¿Ú-------------*/
-	/*-------------¹¦ÄÜº¯Êı-------------*/
+	/*-------------é“¾è¡¨å¯¹å¤–æ¥å£-------------*/
+	/*-------------åŠŸèƒ½å‡½æ•°-------------*/
 	void Clear() {
 		while (!IsEmpty()) {
 			Pop_back();
 		}
 	}
+
 	iterator Insert(const iterator &iter, const T &val) {
-		//¼ì²éµü´úÆ÷ÊÇ·ñÓĞĞ§£¬ÒòÎªÔÚend()Ç°²åÈëÊÇÔÊĞíµÄ£¬ËùÒÔÅÅ³ı¸ÃÌØÊâÇé¿ö
+		//æ£€æŸ¥è¿­ä»£å™¨æ˜¯å¦æœ‰æ•ˆï¼Œå› ä¸ºåœ¨end()å‰æ’å…¥æ˜¯å…è®¸çš„ï¼Œæ‰€ä»¥æ’é™¤è¯¥ç‰¹æ®Šæƒ…å†µ
 		if (iter != end()) {
 			iter.AssertValidity();
 		}
-		//¼ì²éÊÇ·ñÊÇ±¾Á´±íÉÏµÄµü´úÆ÷
+		//æ£€æŸ¥æ˜¯å¦æ˜¯æœ¬é“¾è¡¨ä¸Šçš„è¿­ä»£å™¨
 		if (iter.theList != this) {
 			throw IteratorMisMatchException("Iterator dose not refer to this list");
 		}
 		//////////////////////////////////////////////////////
 		Node *p = iter.cur;
 		++size;
-
 		return iterator(this, p->prev = p->prev->next = new Node(val, p->prev, p));
 	}
+
 	iterator Erase(const iterator &iter) {
 		iter.AssertValidity();
 		if (iter.theList != this)
@@ -238,9 +239,8 @@ public:
 		}
 		//////////////////////////////////////////////////////
 		Node *p = iter.cur;
-		//eraseµÄ·µ»ØÔ¼¶¨
+		//eraseçš„è¿”å›çº¦å®š
 		iterator save(this, p->next);
-
 		p->prev->next = p->next;
 		p->next->prev = p->prev;
 		delete p;
@@ -256,7 +256,7 @@ public:
 			end.AssertValidity();
 		}
 
-		//¼ì²éÊÇ·ñÖ¸ÏòÒ»¸ö±í£¬ÒÔ¼°ÊÇ·ñÖ¸Ïò±¾±í
+		//æ£€æŸ¥æ˜¯å¦æŒ‡å‘ä¸€ä¸ªè¡¨ï¼Œä»¥åŠæ˜¯å¦æŒ‡å‘æœ¬è¡¨
 		if (beg.theList != end.theList) {
 			throw IteratorMisMatchException("Beg and end refer to different list!");
 		}
@@ -264,32 +264,33 @@ public:
 			throw IteratorMisMatchException("Iterator dose not refer to this list");
 		}
 		//////////////////////////////////////////////////////
-		//²»Òª++it!
+		//ä¸è¦++it!
 		beg.AssertValidity();
 		for (iterator it = beg; it != end; ) {
-			it = Erase(it);
+			++it;
 		}
 		return end;
 	}
 
 private:
-	//½øÕ»,ÓÃÓÚ¸øÁ´±í³õÊ¼»¯
+	//è¿›æ ˆ,ç”¨äºç»™é“¾è¡¨åˆå§‹åŒ–
 	void Push_back(const T &val) {
-		Insert(end(), val);
+		Append(val);
+		//Insert(end(), val);
 	}
-	//³öÕ»,ÓÃÓÚ¸øÁ´±í»ØÊÕ
+
+	//å‡ºæ ˆ,ç”¨äºç»™é“¾è¡¨å›æ”¶,--endç”¨äºç§»åŠ¨è¿­ä»£å™¨
 	void Pop_back() {
 		Erase(--end());
 	}
 
 public:
-
-	/*----ÓÃÓÚ¸øµü´úÆ÷³õÊ¼»¯----*/
+	/*----ç”¨äºç»™è¿­ä»£å™¨åˆå§‹åŒ–----*/
 	iterator begin() {
 		return iterator{ this, head->next };
 	}
 
-	//Î²ºóµÄconstÒ»¶¨ÒªĞ´£¬ÒòÎªËüÒ²ÊÇÇ©ÃûÖ®Ò»£¬Ğ´ÉÏÈ¥²ÅÄÜÊÓ×÷ÓĞĞ§µÄÖØÔØ
+	//å°¾åçš„constä¸€å®šè¦å†™ï¼Œå› ä¸ºå®ƒä¹Ÿæ˜¯ç­¾åä¹‹ä¸€ï¼Œå†™ä¸Šå»æ‰èƒ½è§†ä½œæœ‰æ•ˆçš„é‡è½½
 	const_iterator begin() const {
 		return const_iterator(this, head->next);
 	}
@@ -297,26 +298,93 @@ public:
 	iterator end() {
 		return iterator(this, tail);
 	}
+
 	const_iterator end() const {
 		return const_iterator(this, tail);
 	}
-	/*------ÔËËã·ûÖØÔØ-----*/
-
-
+	/*------è¿ç®—ç¬¦é‡è½½-----*/
 
 public:
-	/*-------------¹¦ÄÜº¯Êı-------------*/
+	/*-------------åŠŸèƒ½å‡½æ•°-------------*/
 	void Print() {
-		Node *p = head->next;
-		cout << "[" << p->val;
-		p = p->next;
-		while (p != tail) {
-			cout << ", " << p->val;
+		if (head->next != tail) {
+			Node *p = head->next;
+			cout << "[" << p->val << "]" << endl;
 			p = p->next;
+			while (p != tail) {
+				cout << "[";
+				cout << p->val << "]" << endl;
+				p = p->next;
+			}
 		}
-		cout << "]" << endl;
+		else cout << "æ²¡æœ‰æ•°æ®" << endl;
 	}
 
+	iterator Append(const T &val) {
+		const iterator &iter = begin();
+		Node *p = iter.cur;
+		++size;
+		//åœ¨pæ‰€åœ¨ä½ç½®æ’å…¥èŠ‚ç‚¹
+		//p->prev : pçš„å‰è¶‹
+		//p->prev->next : pçš„å‰è¶‹çš„åè¶‹
+		//new Node(val, p->prev, p));
+		//@param:  p->prev :å¤´èŠ‚ç‚¹
+		//@param:  p(ç¬¬ä¸€ä¸ªæœ‰æ•ˆèŠ‚ç‚¹)
+		//ä»£ç å«ä¹‰:
+		/*p->prev->next = new Node(val, p->prev, p)
+		(æ­¤æ—¶çš„)å¤´èŠ‚ç‚¹->next = æ–°èŠ‚ç‚¹
+		p->prev = p->prev->next
+		å°†p->prevæ›´æ–°ä¸ºæ–°èŠ‚ç‚¹
+		*/
+		return iterator(this, p->prev = p->prev->next = new Node(val, p->prev, p));
+	}
+
+	iterator Find(const iterator &beg, const iterator &end, uint16_t id) {
+		iterator location_index;
+		beg.AssertValidity();
+		if (end != this->end()) {
+			end.AssertValidity();
+		}
+		if (beg.theList != end.theList) {
+			throw IteratorMisMatchException("Beg and end refer to different list!");
+		}
+		else if (beg.theList != this) {
+			throw IteratorMisMatchException("Iterator dose not refer to this list");
+		}
+		beg.AssertValidity();
+		
+		for (iterator it = beg; it != end; ++it) {
+			if (*it == 2) {
+				cout << "æŸ¥æ‰¾æˆåŠŸ" << endl;
+			}
+#ifdef DEBUG_OUTPUT_1
+			cout << "æŸ¥æ‰¾ä¸­" << endl;
+#endif
+		}
+		return nullptr;
+	}
+
+	void Delete() {
+		iterator location = Find(begin(),end(),2);
+		if (location != nullptr) {
+			Node *p = location.cur;
+			//eraseçš„è¿”å›çº¦å®š
+			p->prev->next = p->next;
+			p->next->prev = p->prev;
+			delete p;
+			--size;
+		}
+		
+	}
+
+	iterator Edit(const iterator &iter, const T &val) {
+		//æ£€æŸ¥è¿­ä»£å™¨æ˜¯å¦æœ‰æ•ˆï¼Œå› ä¸ºåœ¨end()å‰æ’å…¥æ˜¯å…è®¸çš„ï¼Œæ‰€ä»¥æ’é™¤è¯¥ç‰¹æ®Šæƒ…å†µ
+		iterator &iter = begin();
+		//////////////////////////////////////////////////////
+		Node *p = iter.cur;
+		++size;
+		return iterator(this, p->prev = p->prev->next = new Node(val, p->prev, p));
+	}
 
 	bool IsEmpty() const {
 		return size == 0;
@@ -324,18 +392,385 @@ public:
 	size_t Size() const {
 		return size;
 	}
+
+
+	//è¿”å›å¼€å¤´çš„å€¼
 	T & front() {
 		return *begin();
 	}
 	const T & front() const {
 		return *begin();
 	}
+
+
+	//è¿”å›èŠ‚å°¾çš„å€¼
 	T & back() {
 		return *--end();
 	}
 	const T & back() const {
 		return *--end();
 	}
-
 };
 
+
+
+//#include "Config.h"
+//#include "Exception_Iterator.h"
+//
+//template <typename T>
+///* ç»“æ„ä½“é“¾è¡¨ */
+//class TPList {
+//protected:
+//	struct Node {	
+//		T val;
+//		Node *next;
+//		Node *prev;
+//		//Tæ²¡å¿…è¦æŒ‡ç±»,ä½†ä¸æŒ‡ç±»çš„è¯,é‡è½½è¿ç®—ç¬¦æœ‰ç‚¹éº»çƒ¦
+//		Node(T va = {0}, Node *pre = nullptr, Node *ne = nullptr) : val(va), prev(pre), next(ne) {}
+//	};
+//
+//public:
+//	/*------å†…éƒ¨è¿­ä»£å™¨ç±»-----*/
+//	class const_iterator {
+//	public:
+//		/*------æ„é€ å‡½æ•°-----*/
+//		const_iterator() : cur(nullptr) {}
+//		//Node *pä¹Ÿè¡Œ, ä½†ä¸è¦å†™æˆconst Node *p; å¦åˆ™ä¼šå‡ºç°åº•å±‚constä¸ç›¸å®¹é—®é¢˜
+//		///ä¿®æ”¹å‰
+//		//nodeæ˜¯TPListçš„å°è£…æˆå‘˜,ä¸èƒ½public
+//		//const_iterator(Node * const p) : cur(p) {}  
+//	private:
+//		const_iterator(Node * const p) : cur(p) {}
+//
+//	protected:
+//		//æ³¨æ„ï¼ä¸ç„¶åµŒå¥—ç±»ä¸èƒ½è®¿é—®å¤–éƒ¨ç±»
+//		friend class TPList<T>; //å‹å…ƒTPList,ç”¨äºè¿­ä»£å™¨è®¿é—®
+//		Node *cur;
+//		const TPList<T> *theList;		//è®°å½•æŒ‡å‘çš„é“¾è¡¨çš„æŒ‡é’ˆï¼Œç”¨ä½œæ ‡è¯†ã€‚
+//		const_iterator(const TPList<T>* list, Node * const p) : cur(p), theList(list) {}
+//
+//		/*------æ„é€ å‡½æ•°-----*/
+//
+//
+//		const T &operator*() const
+//		{
+//			return cur->val;
+//		}
+//		//æ³¨æ„å‰ç½®++è¿”å›å¼•ç”¨
+//		const_iterator &operator++()
+//		{
+//			cur = cur->next;
+//			return *this;
+//		}
+//
+//		//æ³¨æ„å‰ç½®--è¿”å›å¼•ç”¨
+//		const_iterator &operator--()
+//		{
+//			cur = cur->prev;
+//			return *this;
+//		}
+//
+//		/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//		//åç½®++ä¸å¯è¿”å›å¼•ç”¨
+//		const_iterator operator++(int)
+//		{
+//			const_iterator old(theList, this->cur);
+//			//è°ƒç”¨å‰ç½®++
+//			++(*this);
+//			return old;
+//		}
+//
+//
+//		//åç½®--ä¸å¯è¿”å›å¼•ç”¨
+//		const_iterator operator--(int)
+//		{
+//			const_iterator old(theList, this->cur);
+//			//è°ƒç”¨å‰ç½®++
+//			--(*this);
+//			return old;
+//		}
+//
+//		bool operator==(const const_iterator &iter) const
+//		{
+//			return cur == iter.cur;
+//		}
+//		bool operator!=(const const_iterator &iter) const
+//		{
+//			//è°ƒç”¨operator==
+//			return !(*this == iter);
+//		}
+//
+//		/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//		//æœ‰æ•ˆæ€§æ£€éªŒ
+//		void AssertValidity() const
+//		{
+//			if (theList == nullptr || cur == nullptr ||
+//				cur->next == nullptr || cur->prev == nullptr)
+//			{
+//				throw IteratorMisMatchException("The iterator is invalid!");
+//			}
+//		}
+//
+//	private:
+//		void AssertRange() const {
+//			if (this->cur == nullptr) {
+//				throw IteratorMisMatchException("Iterator went out of the range!");
+//			}
+//		}
+//	};
+//public:
+//	//å†…éƒ¨ç±»
+//	class iterator : public const_iterator {
+//		friend class TPList<T>;
+//
+//		iterator() : cur(nullptr) {};
+//	private:
+//		iterator(Node * p) : cur(p) {}
+//
+//	protected:
+//		Node *cur;
+//		//æ³¨æ„ï¼ä¸ç„¶åµŒå¥—ç±»ä¸èƒ½è®¿é—®å¤–éƒ¨ç±»
+//		friend class TPList<T>; //å‹å…ƒTPList,ç”¨äºè¿­ä»£å™¨è®¿é—®
+//		const TPList<T> *theList;		//è®°å½•æŒ‡å‘çš„é“¾è¡¨çš„æŒ‡é’ˆï¼Œç”¨ä½œæ ‡è¯†ã€‚
+//		iterator(const TPList<T>* list, Node * p) : cur(p), theList(list) {}
+//
+//		/*------è¿ç®—ç¬¦é‡è½½-----*/
+//		T &operator*()
+//		{
+//			return cur->val;
+//		}
+//		//æ³¨æ„
+//		const T &operator*() const
+//		{
+//			return const_iterator::operator*();
+//		}
+//		//é‡å†™++
+//		//å‰ç½®++è¿”å›å¼•ç”¨
+//		iterator &operator++()
+//		{
+//			this->cur = this->cur->next;
+//			this->AssertRange();
+//			return *this;
+//		}
+//
+//		//é‡å†™--
+//		//å‰ç½®--è¿”å›å¼•ç”¨
+//		iterator &operator--()
+//		{
+//			this->cur = this->cur->prev;
+//			this->AssertRange();
+//			return *this;
+//		}
+//
+//		//æœ‰æ•ˆæ€§æ£€éªŒ
+//		void AssertValidity() const
+//		{
+//			if (theList == nullptr || cur == nullptr ||
+//				cur->next == nullptr || cur->prev == nullptr)
+//			{
+//				throw IteratorMisMatchException("The iterator is invalid!");
+//			}
+//		}
+//
+//	private:
+//		void AssertRange() const {
+//			if (this->cur == nullptr) {
+//				throw IteratorMisMatchException("Iterator went out of the range!");
+//			}
+//		}
+//	};
+//
+//	/*-------------TPListæ„é€ å™¨å’Œé‡è½½è¿ç®—ç¬¦-------------*/
+//public:
+//	TPList() { Init(); }
+//	//æ³¨æ„æœ¬å‡½æ•°çš„å®ç°æŠ€å·§
+//	TPList(const TPList &list) {
+//		Init();
+//		operator=(list);
+//	}
+//	//æ³¨æ„è¿”å›å€¼
+//	/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//	const TPList &operator=(const TPList &list) {
+//		if (this == &list)
+//		{
+//			return *this;
+//		}
+//		Clear();
+//		for (const_iterator it = list.begin(); it != list.end(); ++it)
+//		{
+//			Push_back(*it);
+//		}
+//		return *this;
+//	}
+//	~TPList() {
+//		Clear();
+//		delete head;
+//		delete tail;
+//	}
+//private:
+//	void Init() {
+//		size = 0;
+//		head = new Node;
+//		tail = new Node;
+//		tail->prev = head;
+//		head->next = tail;
+//	}
+//	Node *head;
+//	Node *tail;
+//	size_t size;
+//
+//public:
+//	/*-------------é“¾è¡¨å¯¹å¤–æ¥å£-------------*/
+//	/*-------------åŠŸèƒ½å‡½æ•°-------------*/
+//	void Clear() {
+//		while (!IsEmpty()) {
+//			Pop_back();
+//		}
+//	}
+//	iterator Insert(const iterator &iter, const T &val) {
+//		//æ£€æŸ¥è¿­ä»£å™¨æ˜¯å¦æœ‰æ•ˆï¼Œå› ä¸ºåœ¨end()å‰æ’å…¥æ˜¯å…è®¸çš„ï¼Œæ‰€ä»¥æ’é™¤è¯¥ç‰¹æ®Šæƒ…å†µ
+//		if (iter != end()) {
+//			iter.AssertValidity();
+//		}
+//		//æ£€æŸ¥æ˜¯å¦æ˜¯æœ¬é“¾è¡¨ä¸Šçš„è¿­ä»£å™¨
+//		if (iter.theList != this) {
+//			throw IteratorMisMatchException("Iterator dose not refer to this list");
+//		}
+//		//////////////////////////////////////////////////////
+//		Node *p = iter.cur;
+//		++size;
+//
+//		return iterator(this, p->prev = p->prev->next = new Node(val, p->prev, p));
+//	}
+//	iterator Erase(const iterator &iter) {
+//		iter.AssertValidity();
+//		if (iter.theList != this)
+//		{
+//			throw IteratorMisMatchException("Iterator dose not refer to this list");
+//		}
+//		//////////////////////////////////////////////////////
+//		Node *p = iter.cur;
+//		//eraseçš„è¿”å›çº¦å®š
+//		iterator save(this, p->next);
+//
+//		p->prev->next = p->next;
+//		p->next->prev = p->prev;
+//		delete p;
+//		--size;
+//
+//		return save;
+//	}
+//
+//	//Erase(--end());
+//	iterator Erase(const iterator &beg, const iterator &end) {
+//		beg.AssertValidity();
+//		if (end != this->end()) {
+//			end.AssertValidity();
+//		}
+//
+//		//æ£€æŸ¥æ˜¯å¦æŒ‡å‘ä¸€ä¸ªè¡¨ï¼Œä»¥åŠæ˜¯å¦æŒ‡å‘æœ¬è¡¨
+//		if (beg.theList != end.theList) {
+//			throw IteratorMisMatchException("Beg and end refer to different list!");
+//		}
+//		else if (beg.theList != this) {
+//			throw IteratorMisMatchException("Iterator dose not refer to this list");
+//		}
+//		//////////////////////////////////////////////////////
+//		//ä¸è¦++it!
+//		beg.AssertValidity();
+//		for (iterator it = beg; it != end; ) {
+//			it = Erase(it);
+//		}
+//		return end;
+//	}
+//
+//private:
+//	//è¿›æ ˆ,ç”¨äºç»™é“¾è¡¨åˆå§‹åŒ–
+//	void Push_back(const T &val) {
+//		Insert(end(), val);
+//	}
+//	//å‡ºæ ˆ,ç”¨äºç»™é“¾è¡¨å›æ”¶
+//	void Pop_back() {
+//		Erase(--end());
+//	}
+//
+//public:
+//
+//	/*----ç”¨äºç»™è¿­ä»£å™¨åˆå§‹åŒ–----*/
+//	iterator begin() {
+//		return iterator{ this, head->next };
+//	}
+//
+//	//å°¾åçš„constä¸€å®šè¦å†™ï¼Œå› ä¸ºå®ƒä¹Ÿæ˜¯ç­¾åä¹‹ä¸€ï¼Œå†™ä¸Šå»æ‰èƒ½è§†ä½œæœ‰æ•ˆçš„é‡è½½
+//	const_iterator begin() const {
+//		return const_iterator(this, head->next);
+//	}
+//
+//	iterator end() {
+//		return iterator(this, tail);
+//	}
+//	const_iterator end() const {
+//		return const_iterator(this, tail);
+//	}
+//	/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//	/*-------------è¾…åŠ©è¾“å‡ºå‡½æ•°-------------*/
+//
+//
+//	/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//	/*ostream &operator<<(ostream & _cout, Stud & _stud)
+//	{
+//		_cout << _stud.sname;
+//		return _cout;
+//	}
+//
+//	istream &operator >> (istream & _cin, Stud & _stud)
+//	{
+//		_cin >> _stud.sname;
+//		return _cin;
+//	}*/
+//
+//	/*------è¿ç®—ç¬¦é‡è½½-----*/
+//
+//
+//
+//
+//public:
+//	/*-------------åŠŸèƒ½å‡½æ•°-------------*/
+//	void Print() {
+//		Node *p = head->next;
+//		cout << "[" << p->val;
+//		p = p->next;
+//		while (p != tail) {
+//			cout << ", " << p->val;
+//			p = p->next;
+//		}
+//		cout << "]" << endl;
+//	}
+//
+//
+//	bool IsEmpty() const {
+//		return size == 0;
+//	}
+//	size_t Size() const {
+//		return size;
+//	}
+//	T & front() {
+//		return *begin();
+//	}
+//	const T & front() const {
+//		return *begin();
+//	}
+//	T & back() {
+//		return *--end();
+//	}
+//	const T & back() const {
+//		return *--end();
+//	}
+//
+//};
+	

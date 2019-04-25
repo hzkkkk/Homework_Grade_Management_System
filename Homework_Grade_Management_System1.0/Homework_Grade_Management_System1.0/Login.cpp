@@ -1,4 +1,5 @@
 #include "Config.h"
+#ifdef DEBUG_NONE_ONE_0
 #include "input.h"
 #include "Login.h"
 
@@ -134,3 +135,4 @@ void CLS() {
 ////}
 //
 ///*               用户名密码验证过程               */
+#endif

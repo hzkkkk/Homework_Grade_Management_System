@@ -1,31 +1,44 @@
 #include "Stud.h"
 #include "Config.h"
 
-Stud::Stud(){}
-Stud::~Stud(){}
 /*			   *
 *   接口功能    *
 *              */
-uint16_t Stud::printSnumber()
-{
-	return 0;
-}
+
 
 void Stud::setSnumber(uint16_t snumber)
 {
 	_snumber = snumber;
 }
 
-unsigned char* Stud::getSname()
+string Stud::getSname()
 {
 	return _sname;
 }
 
-void Stud::setSname(unsigned char * sname)
+void Stud::setSname(string sname)
 {
-	memcpy(_sname,sname,sizeof(sname));
+	_sname = sname;
 }
 
+bool Stud::operator==(const uint16_t & sid) const
+{
+	return _sid == sid;
+}
+
+ostream &operator<<(ostream & _cout, Stud & _stud)
+{
+	_cout << setw(6) << left << _stud._sid 
+		<< setw(6) << left << _stud._snumber 
+		<< setw(6) << left << _stud._sname;
+	return _cout;
+}
+
+istream &operator>>(istream & _cin, Stud & _stud)
+{
+	_cin >> _stud._sid >> _stud._snumber >> _stud._sname;
+	return _cin;
+}
 
 ///* 初始化链表 */
 //SQLIST_STU Stud::InitSqList()

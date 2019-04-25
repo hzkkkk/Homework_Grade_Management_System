@@ -1,6 +1,8 @@
 #include "Config.h"
+#ifdef DEBUG_NONE_ONE_0
 #include "input.h"
 #include "menu.h"
+#include "StudManager.h"
 
 int show_menu(int log_number) {
 	SHOW_MENU();
@@ -8,7 +10,7 @@ int show_menu(int log_number) {
 	switch (log_number)
 	{
 	case 1:
-		SHOW_MENU_STU();
+		StudManager::mode_select();
 		break;
 	case 2:
 		SHOW_MENU_TE();
@@ -18,27 +20,7 @@ int show_menu(int log_number) {
 		break;
 	}
 
-	//menu_Status:菜单状态 1:运行 0:停止
-	unsigned int menu_Status = 0;
-	//menu_flag:菜单选择 
-	unsigned int menu_flag = 1;
 
-	menu_flag = input_num_unit(MENU_STU_NUMBER_LIMIT_MIN, MENU_STU_NUMBER_LIMIT_MAX);
-	while (menu_Status)
-	{
-		switch(menu_flag)
-		{
-		case 1:
-			SHOW_MENU_STU();
-			break;
-		case 2:
-			SHOW_MENU_TE();
-			break;
-		case 3:
-			SHOW_MENU_ADMIN();
-			break;
-		}
-	}
 	return 0;
 }
 
@@ -155,3 +137,4 @@ int show_menu(int log_number) {
 //}
 
 
+#endif

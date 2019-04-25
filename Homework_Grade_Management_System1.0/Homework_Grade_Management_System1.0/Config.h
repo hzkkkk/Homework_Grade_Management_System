@@ -1,4 +1,9 @@
 #pragma once
+#define DEBUG_NONE_ONE_0
+#define DEBUG_INPUT_1
+#define DEBUG_OUTPUT_1
+#pragma warning (disable:4996)
+
 
 #include <windows.h> //Sleep()
 #include <cstdio>
@@ -6,11 +11,13 @@
 #include <Regex>
 #include <iostream>
 #include <stdbool.h> //bool是C++的关键字 C不支持
-#pragma warning (disable:4996)
-
-#include "DataBase.h"
 #include "Stud.h"
+//格式化输出用
+#include <iomanip>
 using namespace std;
+
+
+
 
 ////////////////////////////////////////
 ///login.h

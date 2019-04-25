@@ -1,3 +1,5 @@
+#include "Config.h"
+#ifdef DEBUG_NONE_ONE_0
 #pragma once
 int show_menu(int log_number);
 
@@ -60,3 +62,5 @@ int show_menu(int log_number);
 	printf("%s（9） 退出 		                             \n",PLACEHOLDER);\
 	printf("%s（10）删除结点的学号在a和b之间的所有结点             \n",PLACEHOLDER);\
 	printf("请输入一个整数 1~8: ");
+
+#endif

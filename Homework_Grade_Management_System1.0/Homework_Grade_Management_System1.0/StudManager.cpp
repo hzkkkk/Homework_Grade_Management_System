@@ -19,108 +19,82 @@ int StudManager::mode_select(){
 		SHOW_MENU_STU();
 		menu_flag = input_num_unit(MENU_STU_NUMBER_LIMIT_MIN, MENU_STU_NUMBER_LIMIT_MAX);
 
-		switch (menu_flag){
-		
+		switch (menu_flag)
+		{
 		case 2:
-			for (int i = 1; i <= 5; i++)
+			for (int i = 1; i <= 1; i++)
 			{
-				printf("请输入要插入的学生的信息,每个数据之间空格隔开\n");
-				Stud stud;
+				printf("请输入要插入的学生的信息,每个数据 之间空格隔开\n");
+				Stud stud = { 0 };
 #ifdef DEBUG_INPUT_0
-				//cin >> stud;
+				cin >> stud;
+
 #endif
 #ifdef DEBUG_INPUT_1
-				stud._sid = i;
-				stud._sname = "233";
-				stud._snumber = 2017100;
-#endif
+				stud.setSid(i);
+				stud.setSname("233");
+				stud.setSnumber(2017100);
+#endif			
 				Stus.Append(stud);
-				Stus.Delete();
+
 				printf("插入成功\n");
-				
 			}
 			break;
-
 		case 3:
 		{
-			int count_3 = 0;
-			int i3 = 0;
-			printf("请输入要删除的学生的序号\n");
-			cin >> i3;
-			/*if (Stus.Erase(head, i3))
-			printf("删除成功\n");*/
+			//生成供用户输入的对象
+			if (Stus.Delete_by_find(Stud::getMatchPattern_by_user()))  printf("删除成功\n");
+			else printf("删除失败\n");
 			break;
 		}
-			
+		case 4:
+		{
+			Stus.Find(Stud::getMatchPattern_by_user());
+			break;
+		}
 
 		case 6:
+		{
 			cout << "输出学生信息" << endl;
 			cout << "有" << Stus.Size() << "个学生" << endl;
 			Stus.Print();
 			break;
+		}
+
+		case 7:
+		{
+			Stud stud_temp;
+			vector<TPList<Stud>::iterator> students_iter;
+			printf("请输入要修改的序号:");
+
 
 			
-			//case 4:
-			//	printf("请输入要查找的字段所在属性");
-			//	printf("如:number name score\n");
-			//	//目前只支持number score
-			//	//temp_3全局变量
-			//	cin >> temp_3;
+#ifdef DEBUG_INPUT_0
+			//存到students里面去
+			students_iter = Stus.Edit_by_find(Stud::getMatchPattern_by_user());
 
-			//	//判断输入是否在属性里面
-			//	if ((strcmp(temp_3, "number")) || (strcmp(temp_3, "name")) || (strcmp(temp_3, "score")))
-			//	{
-			//		printf("请输入要查找的数据:");
-			//		int temp;
-			//		cin >> temp;
-			//		pointer temp_p = Search(head, temp, temp_3);
-			//		if (temp_p != NULL)
-			//		{
-			//			printf("查找成功\n");
-			//			cout << "地址为：" << &temp_p << endl;
+#endif
+#ifdef DEBUG_INPUT_1
+			stud_temp.setSid(1);
+			stud_temp.setSname("322");
+			stud_temp.setSnumber(2000000);
+			stud_temp.setMode_fitter(0b0001);
 
-			//		}
-			//		else printf("查找失败\n");
+			//存到students里面去
+			students_iter = Stus.Edit_by_find(stud_temp);
+#endif
 
-			//		//目前只支持float
-			//		/*cin >> temp_3_2;
-			//		SearchElem(head, float(temp_3_2) );*/
-			//	}
-			//	else
-			//	{
-			//		printf("输入的 %s 有误\n", temp_3);
-			//		break;
-			//	}
-			//	break;
 
-			//case 5:
-			//	printf("请输入要获取的序号:");
-			//	int temp;
-			//	cin >> temp;
-			//	pointer p;
-			//	if ((p = Get(head, temp)) != NULL)
-			//	{
-			//		printf("获取成功\n");
-			//		cout << "score:" << p->elem.score << endl;
-			//		cout << "sname:" << p->elem.sname << endl;
-			//		cout << "sumber:" << p->elem.snumber << endl;
-			//	}
-			//	else printf("获取失败\n");
-			//	break;
+			for (int i = 0;i < students_iter.size();i++)
+			{
+				printf("students: %d \n",i);
+				cout << *students_iter[i] << endl;
+			}
 
-			//case 6:
-			//	Traverse(head);
-			//	break;
-
-			//	//case 7:
-			//	//	printf("请输入要修改的序号:");
-			//	//	cin >> count_4;
-			//	//	Stu x;
-			//	//	cin >> x.snumber >> x.sname >> x.score;
-
-			//	//	//if (Change(head, x, count_4))
-			//	//		printf("修改成功\n");
-			//	//break;
+			printf("实际上还没修改.\n");
+			printf("修改成功\n");
+			break;
+		}
 			//case 8:
 			//	if (Destory(head))  printf("销毁成功\n");
 			//	else printf("销毁失败\n");

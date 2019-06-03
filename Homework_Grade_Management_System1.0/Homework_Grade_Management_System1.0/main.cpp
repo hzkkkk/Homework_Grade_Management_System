@@ -1,10 +1,20 @@
-/*
-	author:							hzk
-	Vertion:						1.1
-	Attention£º						Just for Study.
-	Log:							Update
-	Date	:							2019/4/15
-*/
+/*********************************************************************
+ *
+ *  Copyright (c) 2019, gcu_hzk
+ *  All rights reserved.
+ *
+ *  @Project  : Homework_Grade_Management_System1.0
+ *  @FileName : main.cpp
+ *  @Abstract : Stud.cpp is coding
+ *  @Log      : 2019/06/02 21
+ *  @vertion  : 1.2
+ *  @Author   : HZK 
+ *
+ *  @Legacy   : 1.1  
+ *  @Date     : 2019/4/15
+ *
+ *********************************************************************/
+ 
 
 #include "Config.h"
 #ifdef DEBUG_NONE_ONE_0

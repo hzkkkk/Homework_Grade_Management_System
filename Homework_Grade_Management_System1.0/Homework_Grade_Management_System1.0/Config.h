@@ -2,6 +2,7 @@
 #define DEBUG_NONE_ONE_0
 #define DEBUG_INPUT_1
 #define DEBUG_OUTPUT_1
+#define  DEBUG_OUTPUT_FITTER_0
 #pragma warning (disable:4996)
 
 
@@ -15,6 +16,9 @@
 //格式化输出用
 #include <iomanip>
 using namespace std;
+enum Return_iterator {
+	PREV, NEXT
+};
 
 
 
@@ -25,6 +29,7 @@ using namespace std;
 enum Authority{
 	STU, TE, ADMIN, VISITOR
 };
+
 
 #define LOG_NUMBER_LIMIT_MIN 1
 #define LOG_NUMBER_LIMIT_MAX 4
@@ -100,7 +105,7 @@ struct node_stu
 #define MAXSIZE 100
 
 #define DEBUGMODE_1 //是否开启调试模式
-
+#define DEBUGMODE_FOR_Studcpp_1 //是否开启Stud.cpp调试模式
 
 
 ////////////////////////////////////////
@@ -120,3 +125,17 @@ struct node_stu
 #define MENU_TE_NUMBER_LIMIT_MAX 9
 #define MENU_ADMIN_NUMBER_LIMIT_MIN 1
 #define MENU_ADMIN_NUMBER_LIMIT_MAX 9
+
+
+//在每个对象里面开一个模式匹配变量,用于解决模板不能处理外部动态数据的缺点.
+enum pattern_custom {
+	search_stu_sid = 0b0001,
+	search_stu_sname = 0b0010,
+	search_stu_snumber = 0b0100,
+
+	search_how_sid = 0b1001,
+	search_how_sname = 0b1010,
+	search_how_snumber = 0b1100,
+};
+
+
